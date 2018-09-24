@@ -14,8 +14,12 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Panel de usuario
                 </div>
+
+            </div>
+            <div class="panel">
+                Ingreso de archivos
             </div>
         </div>
     </div>
