@@ -24,3 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/config', function () {
     return view('evaluacion/config');
 });
+
+Route::get('/mantenimientos', function () {
+    return view('evaluacion/mantenimiento');
+});
