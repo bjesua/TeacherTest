@@ -62,4 +62,87 @@ class MaatwebsiteDemoController extends Controller
         }
         return back();
     }
+
+    public function importCarrera()
+    {
+        if(Input::hasFile('import_file')){
+            $path = Input::file('import_file')->getRealPath();
+            $data = Excel::load($path, function($reader) {
+            })->get();
+            if(!empty($data) && $data->count()){
+                foreach ($data as $key => $value) {
+                    if($value->codigo_facultad != null || $value->codigo_facultad != ""){
+                        $insert[] = [ 'codigo_facultad' => $value->codigo_facultad, 'descripcion' => $value->descripcion,'estado' => $value->estado];
+                    }
+                }
+                if(!empty($insert)){
+                    DB::table('CARRERA')->insert($insert);
+//                    dd('Insert Record successfully.');
+                }
+            }
+        }
+        return back();
+    }
+
+    public function importCursos()
+    {
+        if(Input::hasFile('import_file')){
+            $path = Input::file('import_file')->getRealPath();
+            $data = Excel::load($path, function($reader) {
+            })->get();
+            if(!empty($data) && $data->count()){
+                foreach ($data as $key => $value) {
+                    if($value->id_facultad != null || $value->id_facultad != ""){
+                        $insert[] = [ 'id_facultad' => $value->id_facultad, 'codigo_facultad' => $value->codigo_facultad,'estado' => $value->estado,'descripcion' => $value->descripcion];
+                    }
+                }
+                if(!empty($insert)){
+                    DB::table('CURSOS')->insert($insert);
+//                    dd('Insert Record successfully.');
+                }
+            }
+        }
+        return back();
+    }
+    public function importCatedratico()
+    {
+        if(Input::hasFile('import_file')){
+            $path = Input::file('import_file')->getRealPath();
+            $data = Excel::load($path, function($reader) {
+            })->get();
+            if(!empty($data) && $data->count()){
+                foreach ($data as $key => $value) {
+                    if($value->id_facultad != null || $value->id_facultad != ""){
+                        $insert[] = [ 'id_facultad' => $value->id_facultad, 'id_curso' => $value->id_curso,'codigo_catedratico' => $value->codigo_catedratico,'nombre' => $value->nombre,'estado' => $value->estado];
+                    }
+                }
+                if(!empty($insert)){
+                    DB::table('CATEDRATICO')->insert($insert);
+//                    dd('Insert Record successfully.');
+                }
+            }
+        }
+        return back();
+    }
+    public function importAlumno()
+    {
+        if(Input::hasFile('import_file')){
+            $path = Input::file('import_file')->getRealPath();
+            $data = Excel::load($path, function($reader) {
+            })->get();
+            if(!empty($data) && $data->count()){
+                //
+                foreach ($data as $key => $value) {
+                    if($value->carnet != null || $value->carnet != ""){
+                        $insert[] = [ 'carnet' => $value->carnet, 'nombre' => $value->nombre,'estado' => $value->estado];
+                    }
+                }
+                if(!empty($insert)){
+                    DB::table('ALUMNO')->insert($insert);
+//                    dd('Insert Record successfully.');
+                }
+            }
+        }
+        return back();
+    }
 }
