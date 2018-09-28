@@ -28,3 +28,18 @@ Route::get('/config', function () {
 Route::get('/mantenimientos', function () {
     return view('evaluacion/mantenimiento');
 });
+
+
+
+Route::post('/import-excel', 'ExcelController@importUsers');
+Route::get('/export-users', 'ExcelController@exportUsers');
+Route::get('/export', 'ExcelController@export');
+
+
+Route::get('importExport', 'MaatwebsiteDemoController@importExport');
+Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');
+Route::post('importExcel', 'MaatwebsiteDemoController@importExcel');
+
+Route::get('/importExports', function () {
+    return view('evaluacion/importExport');
+});
