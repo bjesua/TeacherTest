@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/teacherTest/main.css') }}" rel="stylesheet">
 
 
     {{--incluyendo librerias de botstrap y jquery--}}
