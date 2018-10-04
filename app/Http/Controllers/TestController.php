@@ -3,19 +3,17 @@
 namespace App\Http\Controllers;
 namespace App;
 use DB;
-
 use App\Http\Requests;
-
-use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Model;
-use App\Carrera as carrera;
-use App\Models\\md_estado AS md_estado;
+use App\TestModelos\Alumnos as alumnos;
 
 class TestController extends Controller
 {
     //
 
-    $queryCarrera = carrera:get
+    public function getAlumnos(){
+        $queryCarrera = alumnos::all();
+        return $queryCarrera;
+    }
 
-
+    
 }
