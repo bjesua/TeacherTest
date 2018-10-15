@@ -44,6 +44,17 @@ Route::post('importCursos', 'MaatwebsiteDemoController@importCursos');
 Route::post('importCatedratico', 'MaatwebsiteDemoController@importCatedratico');
 Route::post('importAlumno', 'MaatwebsiteDemoController@importAlumno');
 
+
+
+Route::post('setAlumno', 'TestController@setAlumno');
+Route::get('getAlumno', 'TestController@getAlumno');
+Route::get('getEditAlumno', 'TestController@getEditAlumno');
+Route::post('setEditAlumno', 'TestController@setEditAlumno');
+Route::get('deleteAlumno', 'TestController@deleteAlumno');
+
+Route::post('setCatedratico', 'TestController@setCatedratico');
+Route::get('getCatedratico', 'TestController@getCatedratico');
+
 Route::get('/importExports', function () {
-    return view('evaluacion/importExport');
+    return view('evaluacion.importExport');
 });

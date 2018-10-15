@@ -145,4 +145,8 @@ class MaatwebsiteDemoController extends Controller
         }
         return back();
     }
+
+    public  function test(){
+        echo "hola";
+    }
 }
