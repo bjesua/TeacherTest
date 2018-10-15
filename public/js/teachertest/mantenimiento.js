@@ -112,6 +112,26 @@ function setEditAlumno(){
     });
 }
 
+function deleteAlumno(id){
+    $.ajax({
+        url: "deleteAlumno",
+        method: "get",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: {
+            id:id
+        },
+        dataType: "json",
+        success: function( response ){
+            if(response == 1){
+                alert("Alumno editado");
+                location.reload();
+            }
+        }
+    });
+}
+
 
 function setCatedratico(){
     $.ajax({

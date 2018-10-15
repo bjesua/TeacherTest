@@ -50,6 +50,11 @@ class TestController extends Controller
         );
         return 1;
     }
+    public function deleteAlumno(Request $request){
+        $datos = $request->all();
+        $deletedRows = alumnos::where('ID', $datos["id"])->delete();
+        return 1;
+    }
     public function setCatedratico(Request $request){
         $datos = $request->all();
         $inserta = alumnos::insert(["CODIGO_CATEDRATICO" => $datos["codigo"],"NOMBRE" => $datos["nombre"]]);
