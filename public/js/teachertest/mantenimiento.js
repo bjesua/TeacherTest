@@ -134,6 +134,7 @@ function deleteAlumno(id){
 
 
 function setCatedratico(){
+    alert("entrando ["+$("#midCS").val()+"] ["+$("#nombreCs").val()+"]");
     $.ajax({
         url: "setCatedratico",
         method: "POST",
@@ -141,13 +142,13 @@ function setCatedratico(){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         data: {
-            codigo: $("#midCS").val(),
-            nombre: $("#nombreCs").val()
+            midCS: $("#midCS").val(),
+            nombreCs: $("#nombreCs").val()
         },
         dataType: "json",
         success: function( response ){
             if(response == 1){
-                alert("Alumno guardado");
+                alert("Catedratico guardado");
                 location.reload();
             }
         }
@@ -164,8 +165,8 @@ function getCatedratico(){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         data: {
-            mid: $("#mid").val(),
-            nombre: $("#nombre").val()
+            midCS: $("#midCS").val(),
+            nombreCs: $("#nombreCs").val()
         },
         dataType: "json",
         success: function( data ){
@@ -189,7 +190,7 @@ function getCatedratico(){
                 h+='<a (click)="editEmployee(post)" class="btn btn-success">';
                 h+='Editar';
                 h+='</a>';
-                h+='<a (click)="deleteData(post)" class="btn btn-danger">';
+                h+='<a onclick="deleteCatedratico('+data[k].ID+')" class="btn btn-danger">';
                 h+='Eliminar';
                 h+='</a>';
                 h+='</td>';
@@ -201,11 +202,29 @@ function getCatedratico(){
             $("#getCatedratico").html(h);
         }
     });
+}
+
+    function deleteCatedratico(id){
+        alert("si esntra "+id);
+        $.ajax({
+            url: "deleteCatedratico",
+            method: "get",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                id:id
+            },
+            dataType: "json",
+            success: function( response ){
+                if(response == 1){
+                    alert("Catedratico eliminado");
+                    location.reload();
+                }
+            }
+        });
+    }
 
     // console.log(h);
 
 
-
-
-
-}

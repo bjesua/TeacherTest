@@ -159,7 +159,7 @@
 
                                     <div class="form-group">
                                         <div class="col-sm-10 col-sm-offset-2">
-                                            <button type="submit" class="btn btn-success">
+                                            <button onclick="setCatedratico()" class="btn btn-success">
                                                 Guardar
                                             </button>
                                         </div>
@@ -172,33 +172,7 @@
                         <div class="row">
                             <div class="col-sm-8">
                                 <h2>Listado de Catedráticos: </h2>
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th>Código</th>
-                                        <th>Nombre</th>
-                                        <th>Acciones</th>
-
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>10867</td>
-                                        <td>Sergio Guillermo Gómez Mendoza</td>
-                                        <td>A</td>
-
-                                        <td>
-                                            <a (click)="editEmployee(post)" class="btn btn-success">
-                                                Editar
-                                            </a>
-                                            <a (click)="deleteData(post)" class="btn btn-danger">
-                                                Eliminar
-                                            </a>
-                                        </td>
-                                    </tr>
-
-                                    </tbody>
-                                </table>
+                                  <div id="getCatedratico"></div>
                             </div>
                             <div class="col-sm-4" [hidden]="hideUpdate">
                                 <h2>Modificar Catedrático:</h2>

@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Item;
 
 use App\TestModelos\Alumnos as alumnos;
+use App\TestModelos\Catedratico as catedratico;
 
 class TestController extends Controller
 {
@@ -57,12 +58,18 @@ class TestController extends Controller
     }
     public function setCatedratico(Request $request){
         $datos = $request->all();
-        $inserta = alumnos::insert(["CODIGO_CATEDRATICO" => $datos["codigo"],"NOMBRE" => $datos["nombre"]]);
+        $inserta = catedratico::insert(["CODIGO_CATEDRATICO" => $datos["midCS"],"NOMBRE" => $datos["nombreCs"]]);
         return 1;
     }
     public function getCatedratico(){
-        $alumnos = alumnos::get();
-        return response()->json($alumnos);
+        $catedratico = catedratico::get();
+        return response()->json($catedratico);
+    }
+
+    public function deleteCatedratico(Request $request){
+        $datos = $request->all();
+        $deletedRows = catedratico::where('ID', $datos["id"])->delete();
+        return 1;
     }
 
     public function getMantUsuarios(){
