@@ -64,4 +64,9 @@ class TestController extends Controller
         $alumnos = alumnos::get();
         return response()->json($alumnos);
     }
+
+    public function getMantUsuarios(){
+        $alumnos = alumnos::get();
+        return response()->json($alumnos);
+    }
 }
