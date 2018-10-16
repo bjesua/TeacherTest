@@ -53,6 +53,7 @@ Route::post('setEditAlumno', 'TestController@setEditAlumno');
 Route::get('deleteAlumno', 'TestController@deleteAlumno');
 
 Route::post('setCatedratico', 'TestController@setCatedratico');
+Route::get('deleteCatedratico', 'TestController@deleteCatedratico');
 Route::get('getCatedratico', 'TestController@getCatedratico');
 
 

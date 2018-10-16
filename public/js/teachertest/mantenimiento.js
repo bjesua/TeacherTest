@@ -134,7 +134,6 @@ function deleteAlumno(id){
 
 
 function setCatedratico(){
-    alert("entrando ["+$("#midCS").val()+"] ["+$("#nombreCs").val()+"]");
     $.ajax({
         url: "setCatedratico",
         method: "POST",
@@ -147,6 +146,7 @@ function setCatedratico(){
         },
         dataType: "json",
         success: function( response ){
+            console.log(response);
             if(response == 1){
                 alert("Catedratico guardado");
                 location.reload();
@@ -205,7 +205,6 @@ function getCatedratico(){
 }
 
     function deleteCatedratico(id){
-        alert("si esntra "+id);
         $.ajax({
             url: "deleteCatedratico",
             method: "get",
@@ -225,6 +224,5 @@ function getCatedratico(){
         });
     }
 
-    // console.log(h);
 
 
