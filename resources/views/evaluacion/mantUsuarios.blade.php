@@ -91,30 +91,43 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                    @foreach($usuarios as $u)
+                        <tr>
+                            <td scope="row">{{ $u->name }}</td>
+                            <td scope="row">{{ $u->email }}</td>
+                            <td>
+                                <a (click)="editarUsuario({{ $u->id }})" class="btn btn-success">
+                                    Editar
+                                </a>
+                                <a (click)="eliminarUsuario(pos{{ $u->id }}t)" class="btn btn-danger">
+                                    Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    {{--<tr>--}}
+                        {{--<th scope="row">1</th>--}}
+                        {{--<td>Mark</td>--}}
+                        {{--<td>Otto</td>--}}
+                        {{--<td>@mdo</td>--}}
+                    {{--</tr>--}}
+                    {{--<tr>--}}
+                        {{--<th scope="row">2</th>--}}
+                        {{--<td>Jacob</td>--}}
+                        {{--<td>Thornton</td>--}}
+                        {{--<td>@fat</td>--}}
+                    {{--</tr>--}}
+                    {{--<tr>--}}
+                        {{--<th scope="row">3</th>--}}
+                        {{--<td colspan="2">Larry the Bird</td>--}}
+                        {{--<td>@twitter</td>--}}
+                    {{--</tr>--}}
                     </tbody>
                 </table>
             </div>

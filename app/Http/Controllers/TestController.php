@@ -27,6 +27,7 @@ use App\Item;
 
 use App\TestModelos\Alumnos as alumnos;
 use App\TestModelos\Catedratico as catedratico;
+use App\TestModelos\Usuarios as usuarios;
 
 class TestController extends Controller
 {
@@ -73,7 +74,8 @@ class TestController extends Controller
     }
 
     public function getMantUsuarios(){
-        $alumnos = alumnos::get();
-        return response()->json($alumnos);
+        $usuarios = usuarios::get();
+        return view('evaluacion.mantUsuarios', ['usuarios' => $usuarios]);
+//        return response()->json($alumnos);
     }
 }

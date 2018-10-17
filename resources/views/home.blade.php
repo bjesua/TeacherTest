@@ -35,7 +35,7 @@
                     <div class="card text-center">
                         <div class="card-body">
                             <h5 class="card-title">Carga Excel</h5>
-                            <a href="#" style="text-decotarion:none"><i class="fas fa-file-excel" style="font-size: 136px;"></i></a>
+                            <a href="/importExports" style="text-decotarion:none"><i class="fas fa-file-excel" style="font-size: 136px;"></i></a>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                     <div class="card text-center">
                         <div class="card-body">
                             <h5 class="card-title">Mantenimientos</h5>
-                            <a href="#" style="text-decotarion:none"><i class="fas fa-hammer" style="font-size: 136px;"></i></a>
+                            <a href="/mantenimientos" style="text-decotarion:none"><i class="fas fa-hammer" style="font-size: 136px;"></i></a>
                         </div>
                     </div>
                 </div>
@@ -52,18 +52,16 @@
                 <div class="col-md-4">
                     <div class="card text-center">
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h5 class="card-title">Preguntas</h5>
+                            <a href="/mantenimientos" style="text-decotarion:none"><i class="fas fa-question-circle" style="font-size: 136px;"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card text-center">
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h5 class="card-title">Reportes</h5>
+                            <a href="/mantenimientos" style="text-decotarion:none"><i class="fas fa-file-alt" style="font-size: 136px;"></i></a>
                         </div>
                     </div>
                 </div>

@@ -57,15 +57,8 @@ Route::get('deleteCatedratico', 'TestController@deleteCatedratico');
 Route::get('getCatedratico', 'TestController@getCatedratico');
 
 
-Route::get('getMantUsuarios', 'TestController@getMantUsuarios');
+Route::get('mantUsuarios', 'TestController@getMantUsuarios');
 
 Route::get('/importExports', function () {
     return view('evaluacion.importExport');
-});
-
-
-//mantenimiento usuarios
-
-    Route::get('/mantUsuarios', function () {
-    return view('evaluacion.mantUsuarios');
 });
