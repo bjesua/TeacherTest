@@ -25,57 +25,118 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Item;
 
+use App\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
+
 use App\TestModelos\Alumnos as alumnos;
 use App\TestModelos\Catedratico as catedratico;
 use App\TestModelos\Usuarios as usuarios;
 
 class TestController extends Controller
 {
-    public function setAlumno(Request $request){
+    protected function setAlumno(Request $request){
         $datos = $request->all();
         $inserta = alumnos::insert(["CARNET" => $datos["mid"],"NOMBRE" => $datos["nombre"]]);
         return 1;
     }
-    public function getAlumno(){
+    protected function getAlumno(){
         $alumnos = alumnos::get();
         return response()->json($alumnos);
     }
-    public function getEditAlumno(Request $request){
+    protected function getEditAlumno(Request $request){
         $datos = $request->all();
         $alumnos = alumnos::WHERE([["ID","=",$datos["id"]]])->get();
         return response()->json($alumnos);
     }
-    public function setEditAlumno(Request $request){
+    protected function setEditAlumno(Request $request){
         $datos = $request->all();
         $update = alumnos::WHERE("ID", $datos["id"])->UPDATE(
             ['CARNET' => $datos['carnet'], 'NOMBRE' => $datos['nombre']]
         );
         return 1;
     }
-    public function deleteAlumno(Request $request){
+    protected function deleteAlumno(Request $request){
         $datos = $request->all();
         $deletedRows = alumnos::where('ID', $datos["id"])->delete();
         return 1;
     }
-    public function setCatedratico(Request $request){
+
+
+    protected function setCatedratico(Request $request){
         $datos = $request->all();
         $inserta = catedratico::insert(["CODIGO_CATEDRATICO" => $datos["midCS"],"NOMBRE" => $datos["nombreCs"]]);
         return 1;
     }
-    public function getCatedratico(){
+    protected function getCatedratico(){
         $catedratico = catedratico::get();
         return response()->json($catedratico);
     }
-
-    public function deleteCatedratico(Request $request){
+    protected function editCatedratico(Request $request){
+        $data = $request->all();
+        $catedratico = catedratico::WHERE('ID','=',$data['id'])->get();
+        return response()->json($catedratico);
+    }
+    protected function saveEditCat(Request $request){
+        $datos = $request->all();
+        $update = catedratico::WHERE("ID", $datos["id"])->UPDATE(
+            ['ID_FACULTAD' => $datos['id_facultad'], 'ID_CURSO' => $datos['id_curso'], 'CODIGO_CATEDRATICO' => $datos['codigo_catedratico'], 'NOMBRE' => $datos['nombre']]
+        );
+        return 1;
+    }
+    protected function deleteCatedratico(Request $request){
         $datos = $request->all();
         $deletedRows = catedratico::where('ID', $datos["id"])->delete();
         return 1;
     }
 
-    public function getMantUsuarios(){
+    protected function getMantUsuarios(){
         $usuarios = usuarios::get();
         return view('evaluacion.mantUsuarios', ['usuarios' => $usuarios]);
 //        return response()->json($alumnos);
+    }
+    protected function getEditarUsuario(Request $request){
+        $data = $request->all();
+        $usuarios = usuarios::where('id','=',$data['id'])->get();
+//        return view('evaluacion.mantUsuarios', ['usuarios' => $usuarios]);
+        return response()->json($usuarios);
+    }
+    protected function actualizarUsuario(Request $request){
+        $datos = $request->all();
+        $update = alumnos::WHERE("id", $datos["id"])->UPDATE(
+            ['name' => $datos['nombre'], 'email' => $datos['correo'], 'password' => Hash::make($datos['clave'])]
+        );
+        return 1;
+    }
+
+    protected function create(Request $request)
+    {
+        $data = $request->all();
+        print_r($data);
+        $usuario = User::where('email',"=",$data['email'])->get();
+        print_r($usuario);
+
+        if(count($usuario)>0){
+            User::where('id',"=",$data['UidUsuario'])->update(['name'=>$data['name'],'email'=>$data['email'],'password'=>Hash::make($data['password'])]);
+        }else {
+            User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+        }
+
+        return redirect('/mantUsuarios');
+
+    }
+
+
+    protected function mantPreguntas(Request $request){
+        $datos = $request->all();
+//        $update = alumnos::WHERE("id", $datos["id"])->UPDATE(
+//            ['name' => $datos['nombre'], 'email' => $datos['correo'], 'password' => Hash::make($datos['clave'])]
+//        );
+        return 1;
     }
 }

@@ -34,7 +34,7 @@
                         <div class="col-sm-8">
                             <h2>Crear Alumno:</h2>
                             <div class="form-group">
-                                <label for="mid" class="control-label col-sm-2">
+                                <label for="mid" class="control-label col-sm-6">
                                     Carné
                                 </label>
                                 <div class="col-sm-10">
@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="nombre" class="control-label col-sm-2">
+                                <label for="nombre" class="control-label col-sm-6">
                                     Nombre Alumno
                                 </label>
                                 <div class="col-sm-10">
@@ -76,7 +76,7 @@
                         <div class="col-sm-4" [hidden]="hideUpdate">
                             <h2>Modificar Alumno:</h2>
                             <div class="form-group">
-                                <label for="mide" class="control-label col-sm-2">
+                                <label for="mide" class="control-label col-sm-6">
                                     Id
                                 </label>
                                 <div class="col-sm-10">
@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="nombree" class="control-label col-sm-2">
+                                <label for="nombree" class="control-label col-sm-6">
                                     Nombre
                                 </label>
                                 <div class="col-sm-10">
@@ -133,7 +133,7 @@
                         <div class="col-sm-8">
                             <h2>Crear Catedrático:</h2>
                             <div class="form-group">
-                                <label for="midCS" class="control-label col-sm-2">
+                                <label for="midCS" class="control-label col-sm-6">
                                     Código
                                 </label>
                                 <div class="col-sm-10">
@@ -144,7 +144,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="nombreCs" class="control-label col-sm-2">
+                                <label for="nombreCs" class="control-label col-sm-6">
                                     Nombre
                                 </label>
                                 <div class="col-sm-10">
@@ -174,39 +174,60 @@
                         </div>
                         <div class="col-sm-4" [hidden]="hideUpdate">
                             <h2>Modificar Catedrático:</h2>
-                            <form class="form-horizontal">
-                                <div class="form-group">
-                                    <label for="codigomC" class="control-label col-sm-2">
-                                        Código
-                                    </label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" readonly id="codigomC"
-                                               name="codigomC" value='10867'
-                                               placeholder="Enter a New id"
-                                        >
-                                    </div>
+                            <div class="form-group">
+                                <label for="codigomC" class="control-label col-sm-6">
+                                    Código
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" readonly id="codigomC"
+                                           name="codigomC" value='10867'
+                                           placeholder="Enter a New id"
+                                    >
+                                    <input type="hidden" id="idCatedratico">
                                 </div>
-                                <div class="form-group">
-                                    <label for="nombremC" class="control-label col-sm-2">
-                                        Nombre
-                                    </label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="nombremC"
-                                               name="nombremC" value="Sergio Guillermo Gómez Mendoza"
-                                               placeholder="Enter a New Position"
-                                        >
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nombremC" class="control-label col-sm-6">
+                                    Nombre
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="nombremC"
+                                           name="nombremC" value="Sergio Guillermo Gómez Mendoza"
+                                           placeholder="Enter a New Position"
+                                    >
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nombremC" class="control-label col-sm-6">
+                                    Curso
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="catCurso"
+                                           name="nombremC" value="Análisis 2"
+                                           placeholder="Enter a New Position"
+                                    >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nombremC" class="control-label col-sm-6">
+                                    Facultad
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="catFacultad"
+                                           name="nombremC" value="Ingeniería"
+                                           placeholder="Enter a New Position"
+                                    >
+                                </div>
+                            </div>
 
 
-                                <div class="form-group">
-                                    <div class="col-sm-10 col-sm-offset-2">
-                                        <button type="submit" class="btn btn-success">
-                                            Guardar
-                                        </button>
-                                    </div>
+                            <div class="form-group">
+                                <div class="col-sm-10 col-sm-offset-2">
+                                    <button class="btn btn-success" onclick="saveEditCat()">
+                                        Guardar
+                                    </button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
 

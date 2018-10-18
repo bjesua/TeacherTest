@@ -2,13 +2,21 @@
 
 @section('content')
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="{{ asset('js/teachertest/mantenimiento.js') }}" defer></script>
+    {{--<main role="main">--}}
+    <script type="text/javascript">
+        $(document).ready(function () {
+//            $("#botonUpdate").hide();
+        });
+    </script>
 
     <div class="container">
 
         <div class="card">
             <div class="card-header">{{ __('Registrar') }}</div>
             <div class="card-body">
-                <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
+                <form method="POST" action="/create" aria-label="{{ __('Register') }}" id="formularioGuardar">
                     @csrf
 
                     <div class="form-group row">
@@ -71,10 +79,15 @@
                     </div>
 
                     <div class="form-group row mb-0">
+                        <input type="hidden" id="UidUsuario" class="form-control" name="UidUsuario">
                         <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary" id="botonGuardar">
                                 {{ __('Registrar') }}
                             </button>
+
+                            {{--<button class="btn btn-primary" id="botonUpdate">--}}
+                                {{--{{ __('Actualizar') }}--}}
+                            {{--</button>--}}
                         </div>
                     </div>
                 </form>
@@ -102,32 +115,16 @@
                             <td scope="row">{{ $u->name }}</td>
                             <td scope="row">{{ $u->email }}</td>
                             <td>
-                                <a (click)="editarUsuario({{ $u->id }})" class="btn btn-success">
+                                <a onClick="editarUsuario({{ $u->id }})" class="btn btn-success">
                                     Editar
                                 </a>
-                                <a (click)="eliminarUsuario(pos{{ $u->id }}t)" class="btn btn-danger">
+                                <a onClick="eliminarUsuario({{ $u->id }})" class="btn btn-danger">
                                     Eliminar
                                 </a>
                             </td>
                         </tr>
                     @endforeach
-                    {{--<tr>--}}
-                        {{--<th scope="row">1</th>--}}
-                        {{--<td>Mark</td>--}}
-                        {{--<td>Otto</td>--}}
-                        {{--<td>@mdo</td>--}}
-                    {{--</tr>--}}
-                    {{--<tr>--}}
-                        {{--<th scope="row">2</th>--}}
-                        {{--<td>Jacob</td>--}}
-                        {{--<td>Thornton</td>--}}
-                        {{--<td>@fat</td>--}}
-                    {{--</tr>--}}
-                    {{--<tr>--}}
-                        {{--<th scope="row">3</th>--}}
-                        {{--<td colspan="2">Larry the Bird</td>--}}
-                        {{--<td>@twitter</td>--}}
-                    {{--</tr>--}}
+
                     </tbody>
                 </table>
             </div>

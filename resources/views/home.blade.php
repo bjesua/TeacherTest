@@ -53,7 +53,7 @@
                     <div class="card text-center">
                         <div class="card-body">
                             <h5 class="card-title">Preguntas</h5>
-                            <a href="/mantenimientos" style="text-decotarion:none"><i class="fas fa-question-circle" style="font-size: 136px;"></i></a>
+                            <a href="/mantPreguntas" style="text-decotarion:none"><i class="fas fa-question-circle" style="font-size: 136px;"></i></a>
                         </div>
                     </div>
                 </div>

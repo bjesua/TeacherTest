@@ -54,10 +54,20 @@ Route::get('deleteAlumno', 'TestController@deleteAlumno');
 
 Route::post('setCatedratico', 'TestController@setCatedratico');
 Route::get('deleteCatedratico', 'TestController@deleteCatedratico');
+Route::get('editCatedratico', 'TestController@editCatedratico');
+Route::post('saveEditCat', 'TestController@saveEditCat');
 Route::get('getCatedratico', 'TestController@getCatedratico');
 
 
 Route::get('mantUsuarios', 'TestController@getMantUsuarios');
+Route::get('getEditarUsuario', 'TestController@getEditarUsuario');
+Route::post('actualizarUsuario', 'TestController@actualizarUsuario');
+Route::post('create', 'TestController@create');
+
+
+Route::get('/mantPreguntas', function () {
+    return view('evaluacion/mantenimientoPreguntas');
+});
 
 Route::get('/importExports', function () {
     return view('evaluacion.importExport');
