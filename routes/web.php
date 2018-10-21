@@ -43,6 +43,7 @@ Route::post('importCarrera', 'MaatwebsiteDemoController@importCarrera');
 Route::post('importCursos', 'MaatwebsiteDemoController@importCursos');
 Route::post('importCatedratico', 'MaatwebsiteDemoController@importCatedratico');
 Route::post('importAlumno', 'MaatwebsiteDemoController@importAlumno');
+Route::post('importoQuestions', 'MaatwebsiteDemoController@importoQuestions');
 
 
 

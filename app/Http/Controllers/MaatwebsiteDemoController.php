@@ -146,6 +146,26 @@ class MaatwebsiteDemoController extends Controller
         return back();
     }
 
+    public function importoQuestions()
+    {
+        if(Input::hasFile('import_file')){
+            $path = Input::file('import_file')->getRealPath();
+            $data = Excel::load($path, function($reader) {
+            })->get();
+            if(!empty($data) && $data->count()){
+                foreach ($data as $key => $value) {
+                    if($value->pregunta != null || $value->pregunta != ""){
+                        $insert[] = [ 'PREGUNTA' => $value->pregunta, 'TIPO_COMPONENTE' => $value->tipo_componente, 'CUESTIONARIO' => $value->cuestionario];
+                    }
+                }
+                if(!empty($insert)){
+                    DB::table('PREGUNTAS')->insert($insert);
+                }
+            }
+        }
+        return back();
+    }
+
     public  function test(){
         echo "hola";
     }
