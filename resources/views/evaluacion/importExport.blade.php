@@ -16,9 +16,9 @@
 						<input type="file" name="import_file" />
 						<button class="btn btn-primary">Cargar Archivo</button>
 					</form>
-					<a href="{{ URL::to('downloadExcel/xls') }}"><button class="btn btn-success">Descargar Excel xls</button></a>
-					<a href="{{ URL::to('downloadExcel/xlsx') }}"><button class="btn btn-success">Descargar Excel xlsx</button></a>
-					<a href="{{ URL::to('downloadExcel/csv') }}"><button class="btn btn-success">Descargar CSV</button></a>
+					{{--<a href="{{ URL::to('downloadExcel/xls') }}"><button class="btn btn-success">Descargar Excel xls</button></a>--}}
+					{{--<a href="{{ URL::to('downloadExcel/xlsx') }}"><button class="btn btn-success">Descargar Excel xlsx</button></a>--}}
+					{{--<a href="{{ URL::to('downloadExcel/csv') }}"><button class="btn btn-success">Descargar CSV</button></a>--}}
 				</div>
 			</div>
 
@@ -32,9 +32,9 @@
 						<input type="file" name="import_file" />
 						<button class="btn btn-primary">Cargar Archivo</button>
 					</form>
-					<a href="{{ URL::to('downloadExcel/xls') }}"><button class="btn btn-success">Descargar Excel xls</button></a>
-					<a href="{{ URL::to('downloadExcel/xlsx') }}"><button class="btn btn-success">Descargar Excel xlsx</button></a>
-					<a href="{{ URL::to('downloadExcel/csv') }}"><button class="btn btn-success">Descargar CSV</button></a>
+					{{--<a href="{{ URL::to('downloadExcel/xls') }}"><button class="btn btn-success">Descargar Excel xls</button></a>--}}
+					{{--<a href="{{ URL::to('downloadExcel/xlsx') }}"><button class="btn btn-success">Descargar Excel xlsx</button></a>--}}
+					{{--<a href="{{ URL::to('downloadExcel/csv') }}"><button class="btn btn-success">Descargar CSV</button></a>--}}
 				</div>
 			</div>
 		</div>
@@ -49,9 +49,9 @@
 						<input type="file" name="import_file" />
 						<button class="btn btn-primary">Cargar Archivo</button>
 					</form>
-					<a href="{{ URL::to('downloadExcel/xls') }}"><button class="btn btn-success">Descargar Excel xls</button></a>
-					<a href="{{ URL::to('downloadExcel/xlsx') }}"><button class="btn btn-success">Descargar Excel xlsx</button></a>
-					<a href="{{ URL::to('downloadExcel/csv') }}"><button class="btn btn-success">Descargar CSV</button></a>
+					{{--<a href="{{ URL::to('downloadExcel/xls') }}"><button class="btn btn-success">Descargar Excel xls</button></a>--}}
+					{{--<a href="{{ URL::to('downloadExcel/xlsx') }}"><button class="btn btn-success">Descargar Excel xlsx</button></a>--}}
+					{{--<a href="{{ URL::to('downloadExcel/csv') }}"><button class="btn btn-success">Descargar CSV</button></a>--}}
 				</div>
 			</div>
 
@@ -65,9 +65,25 @@
 						<input type="file" name="import_file" />
 						<button class="btn btn-primary">Cargar Archivo</button>
 					</form>
-					<a href="{{ URL::to('downloadExcel/xls') }}"><button class="btn btn-success">Descargar Excel xls</button></a>
-					<a href="{{ URL::to('downloadExcel/xlsx') }}"><button class="btn btn-success">Descargar Excel xlsx</button></a>
-					<a href="{{ URL::to('downloadExcel/csv') }}"><button class="btn btn-success">Descargar CSV</button></a>
+					{{--<a href="{{ URL::to('downloadExcel/xls') }}"><button class="btn btn-success">Descargar Excel xls</button></a>--}}
+					{{--<a href="{{ URL::to('downloadExcel/xlsx') }}"><button class="btn btn-success">Descargar Excel xlsx</button></a>--}}
+					{{--<a href="{{ URL::to('downloadExcel/csv') }}"><button class="btn btn-success">Descargar CSV</button></a>--}}
+				</div>
+			</div>
+
+			<div class="card col-md-6">
+				<div class="card-header background-card-color">
+					Carga Masiva
+				</div>
+				<div class="card-body">
+					<form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;" action="{{ URL::to('importArchivoFinal') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+						{{ csrf_field() }}
+						<input type="file" name="import_file" />
+						<button class="btn btn-primary">Cargar Archivo</button>
+					</form>
+					{{--<a href="{{ URL::to('downloadExcel/xls') }}"><button class="btn btn-success">Descargar Excel xls</button></a>--}}
+					{{--<a href="{{ URL::to('downloadExcel/xlsx') }}"><button class="btn btn-success">Descargar Excel xlsx</button></a>--}}
+					{{--<a href="{{ URL::to('downloadExcel/csv') }}"><button class="btn btn-success">Descargar CSV</button></a>--}}
 				</div>
 			</div>
 		</div>

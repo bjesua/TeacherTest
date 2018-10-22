@@ -44,6 +44,8 @@ Route::post('importCursos', 'MaatwebsiteDemoController@importCursos');
 Route::post('importCatedratico', 'MaatwebsiteDemoController@importCatedratico');
 Route::post('importAlumno', 'MaatwebsiteDemoController@importAlumno');
 Route::post('importoQuestions', 'MaatwebsiteDemoController@importoQuestions');
+Route::post('importoAsignaQuestions', 'MaatwebsiteDemoController@importoAsignaQuestions');
+Route::post('importArchivoFinal', 'MaatwebsiteDemoController@importArchivoFinal');
 
 
 
@@ -66,9 +68,11 @@ Route::post('actualizarUsuario', 'TestController@actualizarUsuario');
 Route::post('create', 'TestController@create');
 
 
-Route::get('/mantPreguntas', function () {
-    return view('evaluacion/mantenimientoPreguntas');
-});
+Route::get('mantPreguntas', 'TestController@mantPreguntas');
+//Route::get('importoAsignaQuestions', 'TestController@importoAsignaQuestions');
+//Route::get('/mantPreguntas', function () {
+//    return view('evaluacion/mantenimientoPreguntas');
+//});
 
 Route::get('/importExports', function () {
     return view('evaluacion.importExport');

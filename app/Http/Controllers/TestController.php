@@ -33,6 +33,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use App\TestModelos\Alumnos as alumnos;
 use App\TestModelos\Catedratico as catedratico;
 use App\TestModelos\Usuarios as usuarios;
+use App\TestModelos\Preguntas as preguntas;
+use App\TestModelos\AsignarPreguntas as asignapreguntas;
 
 class TestController extends Controller
 {
@@ -132,11 +134,11 @@ class TestController extends Controller
     }
 
 
-    protected function mantPreguntas(Request $request){
-        $datos = $request->all();
-//        $update = alumnos::WHERE("id", $datos["id"])->UPDATE(
-//            ['name' => $datos['nombre'], 'email' => $datos['correo'], 'password' => Hash::make($datos['clave'])]
-//        );
-        return 1;
+    protected function mantPreguntas(){
+        $preguntas = preguntas::orderBy('ID', 'desc')->get();
+        $asignapreguntas = asignapreguntas::orderBy('ID', 'desc')->get();
+
+        return view('evaluacion.mantenimientoPreguntas', ['data' => array('usuarios' => $preguntas,'asignaPreguntas'=>$asignapreguntas)]);
+
     }
 }

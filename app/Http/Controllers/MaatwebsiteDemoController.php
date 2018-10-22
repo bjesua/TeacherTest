@@ -165,6 +165,67 @@ class MaatwebsiteDemoController extends Controller
         }
         return back();
     }
+    public function importoAsignaQuestions()
+    {
+        if(Input::hasFile('import_file')){
+            $path = Input::file('import_file')->getRealPath();
+            $data = Excel::load($path, function($reader) {
+            })->get();
+            if(!empty($data) && $data->count()){
+                foreach ($data as $key => $value) {
+                    if($value->cuestionario != null || $value->cuestionario != ""){
+                        $insert[] = [ 'CUESTIONARIO' => $value->cuestionario, 'CODIGO_CATEDRATICO' => $value->codigo_catedratico, 'FECHA_INICIO' => $value->fecha_inicio, 'FECHA_FIN' => $value->fecha_fin];
+                    }
+                }
+                if(!empty($insert)){
+                    DB::table('ASIGNA_PREGUNTAS')->insert($insert);
+                }
+            }
+        }
+        return back();
+    }
+
+    public function importArchivoFinal()
+    {
+        if(Input::hasFile('import_file')){
+            $path = Input::file('import_file')->getRealPath();
+            $data = Excel::load($path, function($reader) {
+            })->get();
+            print_r($data);
+            if(!empty($data) && $data->count()){
+                foreach ($data as $key => $value) {
+                    if($key == 0){
+                        $codigo_carrera = $value->carrera;
+                        $codigo_curso = $value->codigo;
+                        $codigo_catedratico = $value->catedratico;
+                    }
+                    if($key == 1){
+                        $descripcion_carrera = $value->carrera;
+                        $nombre_curso = $value->codigo;
+                        $nombre_catedratico = $value->catedratico;
+                    }
+                    if($key >= 4){
+                        $insert[] = [
+                            'CODIGO_CARRERA' => trim($codigo_carrera),
+                            'NOMBRE_CARRERA' => trim($descripcion_carrera),
+                            'CODIGO_CURSO' => trim($codigo_curso),
+                            'NOMBRE_CURSO' => trim($nombre_curso),
+                            'CODIGO_CATEDRATICO' =>trim( $codigo_catedratico),
+                            'NOMBRE_CATEDRATICO' => trim($nombre_catedratico),
+                            'CARNET' => trim(str_replace(' ', '', $value->codigo)) ,
+                            'NOMBRE_ALUMNO' => trim($value->catedratico)
+                            ];
+                    }
+                }
+//                print_r($insert);
+                if(!empty($insert)){
+                    DB::table('CARGA_MASIVA_EST_PREGUNTAS')->insert($insert);
+                }
+                echo 1;
+            }
+        }
+//        return back();
+    }
 
     public  function test(){
         echo "hola";

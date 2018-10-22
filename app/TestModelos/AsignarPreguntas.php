@@ -4,8 +4,8 @@ namespace App\TestModelos;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Preguntas extends Model
+class AsignarPreguntas extends Model
 {
     //
-    protected $table = 'PREGUNTAS';
+    protected $table = 'ASIGNA_PREGUNTAS';
 }
