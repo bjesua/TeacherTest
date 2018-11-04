@@ -187,17 +187,28 @@ class MaatwebsiteDemoController extends Controller
 
     public function importArchivoFinal()
     {
+        $bytes = bin2hex(random_bytes(5));
+        $path = Input::file('import_file');
+
+//        $data_read = Excel::load($path, function($reader) {
+//            $reader->limit(25);
+//        })->get();
+//        print_r($data_read);
+
         if(Input::hasFile('import_file')){
             $path = Input::file('import_file')->getRealPath();
             $data = Excel::load($path, function($reader) {
             })->get();
-            print_r($data);
+//            print_r($data);
             if(!empty($data) && $data->count()){
+//                print_r($data);
                 foreach ($data as $key => $value) {
                     if($key == 0){
                         $codigo_carrera = $value->carrera;
                         $codigo_curso = $value->codigo;
                         $codigo_catedratico = $value->catedratico;
+                        $fecha_inicio = $value->inicio;
+                        $fecha_fin = $value->fin;
                     }
                     if($key == 1){
                         $descripcion_carrera = $value->carrera;
@@ -213,18 +224,42 @@ class MaatwebsiteDemoController extends Controller
                             'CODIGO_CATEDRATICO' =>trim( $codigo_catedratico),
                             'NOMBRE_CATEDRATICO' => trim($nombre_catedratico),
                             'CARNET' => trim(str_replace(' ', '', $value->codigo)) ,
-                            'NOMBRE_ALUMNO' => trim($value->catedratico)
+                            'NOMBRE_ALUMNO' => trim($value->catedratico),
+                            'TOKEN' => $bytes,
+                            'FECHA_INICIO' => $fecha_inicio,
+                            'FECHA_FIN' => $fecha_fin
                             ];
                     }
                 }
-//                print_r($insert);
                 if(!empty($insert)){
-                    DB::table('CARGA_MASIVA_EST_PREGUNTAS')->insert($insert);
+//                    DB::table('CARGA_PROFESOR_CURSO_ALUMNOS')->insert($insert);
                 }
-                echo 1;
             }
         }
-//        return back();
+//        ->with('message','Success');
+//        return back()->with('hash', $bytes);
+//        return redirect('mantPreguntas');
+
+    }
+
+    public function importaPreguntas()
+    {
+        if(Input::hasFile('import_file')){
+            $path = Input::file('import_file')->getRealPath();
+            $data = Excel::load($path, function($reader) {
+            })->get();
+            if(!empty($data) && $data->count()){
+                foreach ($data as $key => $value) {
+                    if($value->pregunta != null || $value->pregunta != ""){
+                        $insert[] = [ 'ID' => $value->numero,'PREGUNTA' => $value->pregunta, 'TIPO_COMPONENTE' => $value->tipo_componente, 'OPCION1' => $value->opcion1, 'OPCION2' => $value->opcion2, 'OPCION3' => $value->opcion3, 'OPCION4' => $value->opcion4];
+                    }
+                }
+                if(!empty($insert)){
+                    DB::table('PREGUNTAS')->insert($insert);
+                }
+            }
+        }
+        return back();
     }
 
     public  function test(){

@@ -20,15 +20,23 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+//Route::get('config', ['middleware' => 'auth', 'uses' => 'TestController@configView']);
+//Route::get('/config', function () { return view('evaluacion/config'); });
 
-Route::get('/config', function () {
-    return view('evaluacion/config');
+Route::group(['prefix' => '/', 'middleware' => ['auth']], function()
+{
+    // user need to logged in order to access these routes
+//    Route::get('/', function()
+//    {
+//
+//    });
+    Route::get('/config', function () { return view('evaluacion/config'); });
 });
+
 
 Route::get('/mantenimientos', function () {
     return view('evaluacion/mantenimiento');
 });
-
 
 
 Route::post('/import-excel', 'ExcelController@importUsers');
@@ -46,6 +54,7 @@ Route::post('importAlumno', 'MaatwebsiteDemoController@importAlumno');
 Route::post('importoQuestions', 'MaatwebsiteDemoController@importoQuestions');
 Route::post('importoAsignaQuestions', 'MaatwebsiteDemoController@importoAsignaQuestions');
 Route::post('importArchivoFinal', 'MaatwebsiteDemoController@importArchivoFinal');
+Route::post('importaPreguntas', 'MaatwebsiteDemoController@importaPreguntas');
 
 
 
@@ -69,6 +78,17 @@ Route::post('create', 'TestController@create');
 
 
 Route::get('mantPreguntas', 'TestController@mantPreguntas');
+
+//responder
+Route::get('/llenar', function () {
+    return view('evaluacion.llenar');
+});
+Route::get('llenar/{codigo_curso}/{cod_catedratico}', 'TestController@llenar');
+Route::get('llenar/{codigo_curso}/{cod_catedratico}/{carnet}', 'TestController@llenar');
+Route::get('calificar/{codigo_curso}/{cod_catedratico}/{carnet}', 'TestController@calificar');
+Route::get('registrarCarnet', 'TestController@registrarCarnet');
+
+Route::get('responderPreguntas', 'TestController@responderPreguntas');
 //Route::get('importoAsignaQuestions', 'TestController@importoAsignaQuestions');
 //Route::get('/mantPreguntas', function () {
 //    return view('evaluacion/mantenimientoPreguntas');
