@@ -61,7 +61,7 @@
                     <div class="card text-center">
                         <div class="card-body">
                             <h5 class="card-title">Reportes</h5>
-                            <a href="/mantenimientos" style="text-decotarion:none"><i class="fas fa-file-alt" style="font-size: 136px;"></i></a>
+                            <a href="/charts" style="text-decotarion:none"><i class="fas fa-chart-pie" style="font-size: 136px;"></i></a>
                         </div>
                     </div>
                 </div>

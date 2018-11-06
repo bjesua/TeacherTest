@@ -22,10 +22,10 @@ class Respuestas extends Migration
             $table->integer('ID_PREGUNTA')->nullable();
 //            $table->string('TIPO',75)->unique();
             $table->text('RESPUESTA')->nullable();
-            $table->text('OPCION1')->nullable();
-            $table->text('OPCION2')->nullable();
-            $table->text('OPCION3')->nullable();
-            $table->text('OPCION4')->nullable();
+            $table->integer('OPCION1')->nullable();
+            $table->integer('OPCION2')->nullable();
+            $table->integer('OPCION3')->nullable();
+            $table->integer('OPCION4')->nullable();
 //            $table->integer('TIPO_COMPONENTE')->nullable();
 //            $table->text('OPCIONES')->nullable();
             $table->timestamps();

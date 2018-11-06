@@ -16,16 +16,16 @@ class Respuestas extends Migration
         Schema::create('RESPUESTAS', function (Blueprint $table) {
             $table->increments('ID');
 //            $table->integer('NUMERO_CARNET')->nullable();
-            $table->string('NUMERO_CARNET',75)->unique();
-            $table->integer('CODIGO_CURSO')->nullable();
-            $table->integer('CODIGO_CATEDRATICO')->nullable();
-            $table->integer('ID_PREGUNTA')->nullable();
+            $table->string('NUMERO_CARNET',75);
+            $table->integer('CODIGO_CURSO');
+            $table->integer('CODIGO_CATEDRATICO');
+            $table->integer('ID_PREGUNTA');
 //            $table->string('TIPO',75)->unique();
             $table->text('RESPUESTA')->nullable();
-            $table->text('OPCION1')->nullable();
-            $table->text('OPCION2')->nullable();
-            $table->text('OPCION3')->nullable();
-            $table->text('OPCION4')->nullable();
+            $table->integer('OPCION1')->nullable();
+            $table->integer('OPCION2')->nullable();
+            $table->integer('OPCION3')->nullable();
+            $table->integer('OPCION4')->nullable();
 //            $table->integer('TIPO_COMPONENTE')->nullable();
 //            $table->text('OPCIONES')->nullable();
             $table->timestamps();

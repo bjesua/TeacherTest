@@ -89,6 +89,7 @@ Route::get('calificar/{codigo_curso}/{cod_catedratico}/{carnet}', 'TestControlle
 Route::get('registrarCarnet', 'TestController@registrarCarnet');
 
 Route::get('responderPreguntas', 'TestController@responderPreguntas');
+Route::post('guardarDatosForm', 'TestController@guardarDatosForm');
 //Route::get('importoAsignaQuestions', 'TestController@importoAsignaQuestions');
 //Route::get('/mantPreguntas', function () {
 //    return view('evaluacion/mantenimientoPreguntas');
@@ -97,3 +98,10 @@ Route::get('responderPreguntas', 'TestController@responderPreguntas');
 Route::get('/importExports', function () {
     return view('evaluacion.importExport');
 });
+
+Route::get('deletePreguntas', 'TestController@deletePreguntas');
+
+Route::get('charts', 'TestController@charts');
+Route::get('charts/{codigo_carrera}', 'TestController@getCatedraticosCarrera');
+Route::get('charts/{codigo_carrera}/{codigo_curso}', 'TestController@getCatedraticosCharts');
+Route::post('chartPie', 'TestController@chartPie');

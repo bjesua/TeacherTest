@@ -20,7 +20,7 @@
                     {{ csrf_field() }}
 
                     <div class="form-label-group col-md-6">
-                        <input type="text" id="inputEmail" class="form-control" name="noCarnet" required=""
+                        <input type="text" id="inputEmail" class="form-control" name="noCarnet" required="" placeholder="Formato: 000-00-0000"
                                autofocus="">
                     </div>
                     <button class="btn btn-lg btn-primary col-md-6 btn-block" type="submit">Ingresar</button>
@@ -57,7 +57,7 @@
                                 <td scope="row">{{ $u->NOMBRE_CATEDRATICO }}</td>
                                 <td>
                                     <a href="{{ URL::to('calificar/'.$u->CODIGO_CURSO.'/'.$u->CODIGO_CATEDRATICO.'/'.$_GET["noCarnet"]) }}"
-                                       target="_blank" class="btn btn-success">
+                                       class="btn btn-success">
                                         Calificar
                                     </a>
                                     {{--<a onClick="eliminarUsuario({{ $u->id }})" class="btn btn-danger">--}}
@@ -77,24 +77,24 @@
                 <h1 class="text-center">Responder las siguientes preguntas</h1>
                 <br>
                 <br>
-                {{--<form action="{{ URL::to('responderPreguntas') }}" class="offset-3 col-md-6 form-horizontal" method="get"--}}
+                {{--<form action="{{ URL::to('responderPreguntas') }}" class=" form-horizontal" method="get"--}}
                 {{--enctype="multipart/form-data">--}}
-                {{--{{ csrf_field() }}--}}
-                <input type="hidden" name="curso-0-0-0-0" value="{{$data['curso']}}">
-                <input type="hidden" name="catedratico-0-0-0-0" value="{{$data['catedratico']}}">
-                <input type="hidden" name="carnet-0-0-0-0" value="{{$data['carnet']}}">
+                {{ csrf_field() }}
+                <input type="hidden" name="curso-0-0-0-0" id="codCurso" value="{{$data['curso']}}">
+                <input type="hidden" name="catedratico-0-0-0-0" id="codCate" value="{{$data['catedratico']}}">
+                <input type="hidden" name="carnet-0-0-0-0" id="noCarnet" value="{{$data['carnet']}}">
                 @foreach($data['preguntas'] as $u)
                     @if($u->TIPO_COMPONENTE == 2)
                         <div class="form-group">
                             <label for="exampleInputEmail1">{{ $u->PREGUNTA }}</label>
-                            <textarea class="form-control rTexto" id="exampleFormControlTextarea1" rows="3"
+                            <textarea class="form-control rTexto" id="id-{{$u->ID}}-pregunta-{{$u->ID}}-0" rows="3"
                                       name="id-{{$u->ID}}-pregunta-{{$u->ID}}-0"></textarea>
                             {{--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>--}}
                         </div>
                     @endif
                     @if($u->TIPO_COMPONENTE == 1)
                         <label for="exampleInputEmail1">{{ $u->PREGUNTA }}</label><br>
-                        <div class="form-group form-check" style="margin-left: 50px">
+                        <div class="form-group form-check checkeds" style="margin-left: 50px" id="checkeds-{{$u->ID}}">
                             @if($u->OPCION1 != "")
                                 <div class="row">
                                     <input type="checkbox" class="form-check-input rCheck"

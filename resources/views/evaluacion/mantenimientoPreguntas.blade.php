@@ -38,7 +38,7 @@
                     {{--</div>--}}
                     {{--@endif--}}
                 <div class="card-header background-card-color">
-                    Carga Masiva
+                    Carga Masiva Carrera, Curso, Profesor, Alumnos asignados
                 </div>
                 <div class="card-body">
                     <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;" action="{{ URL::to('importArchivoFinal') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
@@ -61,6 +61,10 @@
                         <input type="file" name="import_file" />
                         <button class="btn btn-primary">Cargar Archivo</button>
                     </form>
+                    <form method="get" action="{{ URL::to('deletePreguntas') }}">
+                        <button class="btn btn-danger">Eliminar Preguntas</button>
+                    </form>
+
                     {{--<a href="{{ URL::to('downloadExcel/xls') }}"><button class="btn btn-success">Descargar Excel xls</button></a>--}}
                     {{--<a href="{{ URL::to('downloadExcel/xlsx') }}"><button class="btn btn-success">Descargar Excel xlsx</button></a>--}}
                     {{--<a href="{{ URL::to('downloadExcel/csv') }}"><button class="btn btn-success">Descargar CSV</button></a>--}}

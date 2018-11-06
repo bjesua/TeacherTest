@@ -192,69 +192,104 @@ class TestController extends Controller
         return view('evaluacion.llenar', ['data' => array('calificar' => 1, 'preguntas' => $preguntas, 'curso' => $curso, 'catedratico' => $catedratico, 'carnet' => $carnet)]);
     }
 
-
     protected function configView()
     {
         return view('evaluacion/mantenimiento');
     }
 
-    protected function responderPreguntas(Request $request)
+    protected function guardarDatosForm(Request $request)
     {
         $data = $request->all();
-        print_r($data);
-        echo "<br>";
-        $curso = $data['curso-0-0-0-0'];
-        $catedratico = $data['catedratico-0-0-0-0'];
-        $carnet = $data['carnet-0-0-0-0'];
-        $insert = array();
-        $concatOpt = '';
-        $contadorConcat = 0;
-        $vEstado = 0;
-        foreach ($data as $k => $v) {
-            if ($k != '_token') {
-                $tipo = explode("-", $k);
-                if ($tipo[2] == "pregunta") {
-//                    $insert[] = [
-//                        'NUMERO_CARNET' => $carnet,
-//                        'CODIGO_CURSO' => $curso,
-//                        'CODIGO_CATEDRATICO' => $catedratico,
-//                        'ID_PREGUNTA' => $tipo[1],
-//                        'RESPUESTAS' => $v,
-//                    ];
-                } else {
-                    echo $tipo[4]."<br>";
-                    if ($tipo[4] == 'primero') {
-                        $concatOpt = '';
-                        $concatOpt .= $v . ',';
-                    } else if ($tipo[4] == 'segundo') {
-                        $concatOpt .= $v . ',';
-                    } else if ($tipo[4] == 'tercero') {
-                        $concatOpt .= $v . ',';
-                    } else if ($tipo[4] == 'cuarto') {
-                        $concatOpt .= $v . ',';
-                        $rest = substr($concatOpt, 0, -1);
-                        $val = explode(",", $rest);
-                        $prim = (isset($val[0])) ? $val[0] : '';
-                        $seg = (isset($val[1])) ? $val[1] : '';
-                        $ter = (isset($val[2])) ? $val[2] : '';
-                        $cua = (isset($val[3])) ? $val[3] : '';
-                        $insert[] = [
-                            'NUMERO_CARNET' => $carnet,
-                            'CODIGO_CURSO' => $curso,
-                            'CODIGO_CATEDRATICO' => $catedratico,
-                            'ID_PREGUNTA' => $tipo[1],
-                            'OPCION1' => $prim ,
-                            'OPCION2' => $seg,
-                            'OPCION4' => $ter,
-                            'OPCION3' => $cua,
-                        ];
-                    }
-                }
+        $noCarnet = $data['noCarnet'];
+        $codCate = $data['codCate'];
+        $codCurso = $data['codCurso'];
+        foreach ($data['final'] as $k => $v) {
+            if ($v['tipo'] == 1) {
+                $insert[] = ['NUMERO_CARNET' => $noCarnet, 'CODIGO_CURSO' => $codCurso, 'CODIGO_CATEDRATICO' => $codCate, 'ID_PREGUNTA' => $v['pregunta'], 'RESPUESTA' => $v['respuesta']];
+            } else if ($v['tipo'] == 2) {
+                $insert1[] = [
+                    'NUMERO_CARNET' => $noCarnet,
+                    'CODIGO_CURSO' => $codCurso,
+                    'CODIGO_CATEDRATICO' => $codCate,
+                    'ID_PREGUNTA' => $v['pregunta'],
+                    'OPCION1' => ($v['respuesta'][0]),
+                    'OPCION2' => ($v['respuesta'][1]),
+                    'OPCION3' => ($v['respuesta'][2]),
+                    'OPCION4' => ($v['respuesta'][3])
+                ];
             }
         }
-        echo "<br>";
-        print_r($insert);
-//
-//        $insert = respuestas::insert($insert);
+        $inserta = respuestas::insert($insert);
+        $inserta1 = respuestas::insert($insert1);
+        if ($inserta && $inserta1) {
+            return 1;
+        } else {
+            return 2;
+        }
+    }
+
+    protected function deletePreguntas()
+    {
+        preguntas::truncate();
+        return back();
+    }
+
+    protected function charts()
+    {
+        $carrera = DB::select(DB::raw("SELECT DISTINCT CODIGO_CARRERA,NOMBRE_CARRERA FROM CARGA_PROFESOR_CURSO_ALUMNOS"));
+        return view('evaluacion.charts', ['data' => array('carreras' => $carrera)]);
+    }
+
+    protected function getCatedraticosCarrera($codigo_carrera)
+    {
+        $carrera = DB::select(DB::raw("SELECT DISTINCT CODIGO_CARRERA,NOMBRE_CARRERA FROM CARGA_PROFESOR_CURSO_ALUMNOS"));
+
+        $cursos = DB::select(DB::raw("select CODIGO_CARRERA, NOMBRE_CARRERA, CODIGO_CURSO, NOMBRE_CURSO, CODIGO_CATEDRATICO, NOMBRE_CATEDRATICO
+                  from CARGA_PROFESOR_CURSO_ALUMNOS
+                  where CODIGO_CARRERA = '" . $codigo_carrera . "'
+                  group by CODIGO_CARRERA,NOMBRE_CARRERA, CODIGO_CURSO, NOMBRE_CURSO, CODIGO_CATEDRATICO, NOMBRE_CATEDRATICO"));
+
+        return view('evaluacion.charts', ['data' => array('carreras' => $carrera, 'cursos' => $cursos)]);
+    }
+
+    protected function getCatedraticosCharts($codigo_carrera, $codigo_curso)
+    {
+        $carrera = DB::select(DB::raw("SELECT DISTINCT CODIGO_CARRERA,NOMBRE_CARRERA FROM CARGA_PROFESOR_CURSO_ALUMNOS"));
+
+        $cursos = DB::select(DB::raw("select CODIGO_CARRERA, NOMBRE_CARRERA, CODIGO_CURSO, NOMBRE_CURSO, CODIGO_CATEDRATICO, NOMBRE_CATEDRATICO
+                  from CARGA_PROFESOR_CURSO_ALUMNOS
+                  where CODIGO_CARRERA = '" . $codigo_carrera . "'
+                  group by CODIGO_CARRERA,NOMBRE_CARRERA, CODIGO_CURSO, NOMBRE_CURSO, CODIGO_CATEDRATICO, NOMBRE_CATEDRATICO"));
+
+        $catedratico = DB::select(DB::raw("select CODIGO_CARRERA, NOMBRE_CARRERA, CODIGO_CURSO, NOMBRE_CURSO, CODIGO_CATEDRATICO, NOMBRE_CATEDRATICO
+                  from CARGA_PROFESOR_CURSO_ALUMNOS
+                  where CODIGO_CURSO = '" . $codigo_curso . "'
+                  group by CODIGO_CARRERA,NOMBRE_CARRERA, CODIGO_CURSO, NOMBRE_CURSO, CODIGO_CATEDRATICO, NOMBRE_CATEDRATICO"));
+
+        $preguntas = preguntas::get(['ID']);
+
+        return view('evaluacion.charts', ['data' => array('carreras' => $carrera, 'cursos' => $cursos, 'catedratico' => $catedratico, 'preguntas' => $preguntas)]);
+    }
+
+    protected function chartPie(Request $request)
+    {
+        $data = $request->all();
+//        print_r($data);
+        $datos = DB::select(DB::raw("           
+        SELECT * FROM (
+        SELECT R.ID_PREGUNTA,
+        GROUP_CONCAT(RESPUESTA SEPARATOR ', ') AS RESPUESTAS,
+               SUM(R.OPCION1) AS OP1,
+               SUM(R.OPCION2) AS OP2,
+               SUM(R.OPCION3) AS OP3,
+               SUM(R.OPCION4) AS OP4
+        FROM RESPUESTAS R
+        WHERE R.CODIGO_CATEDRATICO = '".$data['codigo_catedratico']."'
+        GROUP BY ID_PREGUNTA) AS T , PREGUNTAS P
+        WHERE T.ID_PREGUNTA = P.ID
+            "));
+
+//        print_r($datos);
+        return response()->json($datos);
     }
 }

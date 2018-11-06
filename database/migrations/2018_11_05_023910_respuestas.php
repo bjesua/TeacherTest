@@ -13,6 +13,7 @@ class Respuestas extends Migration
      */
     public function up()
     {
+        //
         Schema::create('RESPUESTAS', function (Blueprint $table) {
             $table->increments('ID');
 //            $table->integer('NUMERO_CARNET')->nullable();

@@ -232,12 +232,12 @@ class MaatwebsiteDemoController extends Controller
                     }
                 }
                 if(!empty($insert)){
-//                    DB::table('CARGA_PROFESOR_CURSO_ALUMNOS')->insert($insert);
+                    DB::table('CARGA_PROFESOR_CURSO_ALUMNOS')->insert($insert);
                 }
             }
         }
 //        ->with('message','Success');
-//        return back()->with('hash', $bytes);
+        return back()->with('hash', $bytes);
 //        return redirect('mantPreguntas');
 
     }
