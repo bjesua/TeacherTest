@@ -67,6 +67,9 @@ function llenar() {
             if (response == 1) {
                 alert("Gracias por tus respuestas!");
                 window.history.back();
+            }else{
+                alert("Ya no puedes responder!");
+                window.history.back();
             }
         }
     });

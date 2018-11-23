@@ -199,10 +199,19 @@ class TestController extends Controller
 
     protected function guardarDatosForm(Request $request)
     {
+
         $data = $request->all();
+
         $noCarnet = $data['noCarnet'];
         $codCate = $data['codCate'];
         $codCurso = $data['codCurso'];
+
+        $validaResp = respuestas::WHERE([['NUMERO_CARNET','=',$noCarnet],['CODIGO_CURSO','=',$codCurso],['CODIGO_CATEDRATICO','=',$codCate]])->get();
+        if(count($validaResp)>0){
+            return 0;
+        }
+
+
         foreach ($data['final'] as $k => $v) {
             if ($v['tipo'] == 1) {
                 $insert[] = ['NUMERO_CARNET' => $noCarnet, 'CODIGO_CURSO' => $codCurso, 'CODIGO_CATEDRATICO' => $codCate, 'ID_PREGUNTA' => $v['pregunta'], 'RESPUESTA' => $v['respuesta']];

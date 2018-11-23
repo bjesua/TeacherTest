@@ -7,7 +7,7 @@
 
     <div class="container">
 
-
+        <h2 class="text-center">Reportes y Charts</h2>
         <div class="card col-md-12">
             <div class="card-header">
                 Carreras
