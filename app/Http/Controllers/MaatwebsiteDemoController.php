@@ -22,7 +22,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input as Input;
 use Illuminate\Support\Facades\Storage;
-
+use App\TestModelos\ProfesorCursoAlumno as profesorcursoalumno;
 use App\Item;
 
 
@@ -230,7 +230,24 @@ class MaatwebsiteDemoController extends Controller
                     }
                 }
                 if (!empty($insert)) {
-                    DB::table('CARGA_PROFESOR_CURSO_ALUMNOS')->insert($insert);
+                    echo "<pre>";
+//                    print_r($insert);
+                    echo "<pre>";
+                    $buscaCargaParecida = profesorcursoalumno::WHERE([
+                        ["CODIGO_CARRERA", '=', $insert[0]['CODIGO_CARRERA']],
+                        ["NOMBRE_CARRERA", '=', $insert[0]['NOMBRE_CARRERA']],
+                        ["CODIGO_CURSO", '=', $insert[0]['CODIGO_CURSO']],
+                        ["NOMBRE_CURSO", '=', $insert[0]['NOMBRE_CURSO']],
+                        ["CODIGO_CATEDRATICO", '=', $insert[0]['CODIGO_CATEDRATICO']],
+                        ["NOMBRE_CATEDRATICO", '=', $insert[0]['NOMBRE_CATEDRATICO']]
+                    ])->GET()->toArray();
+//                    print_r($buscaCargaParecida);
+                    echo count($buscaCargaParecida);
+                    if (count($buscaCargaParecida) == 0) {
+                        DB::table('CARGA_PROFESOR_CURSO_ALUMNOS')->insert($insert);
+                    } else {
+                        return back()->with('message', 'Error el archivo ya ha sido cargado anteriormente....');
+                    }
                 }
             }
 

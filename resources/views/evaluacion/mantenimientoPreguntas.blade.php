@@ -41,6 +41,11 @@
                     Carga Masiva Carrera, Curso, Profesor, Alumnos asignados
                 </div>
                 <div class="card-body">
+                    @if(session('message'))
+                        <div class="alert alert-danger" role="alert">
+                            {{session('message')}}
+                        </div>
+                    @endif
                     <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;" action="{{ URL::to('importArchivoFinal') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="file" name="import_file" />
