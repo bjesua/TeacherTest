@@ -36,7 +36,7 @@ Route::group(['prefix' => '/', 'middleware' => ['auth']], function()
 
 Route::get('/mantenimientos', function () {
     return view('evaluacion/mantenimiento');
-});
+})->name('mantenimientos');
 
 
 Route::post('/import-excel', 'ExcelController@importUsers');
@@ -71,13 +71,13 @@ Route::post('saveEditCat', 'TestController@saveEditCat');
 Route::get('getCatedratico', 'TestController@getCatedratico');
 
 
-Route::get('mantUsuarios', 'TestController@getMantUsuarios');
+Route::get('mantUsuarios', 'TestController@getMantUsuarios')->name('mantUsuarios');
 Route::get('getEditarUsuario', 'TestController@getEditarUsuario');
 Route::post('actualizarUsuario', 'TestController@actualizarUsuario');
 Route::post('create', 'TestController@create');
 
 
-Route::get('mantPreguntas', 'TestController@mantPreguntas');
+Route::get('mantPreguntas', 'TestController@mantPreguntas')->name('mantPreguntas');
 
 //responder
 Route::get('/llenar', function () {
@@ -97,11 +97,11 @@ Route::post('guardarDatosForm', 'TestController@guardarDatosForm');
 
 Route::get('/importExports', function () {
     return view('evaluacion.importExport');
-});
+})->name('importExports');
 
 Route::get('deletePreguntas', 'TestController@deletePreguntas');
 
-Route::get('charts', 'TestController@charts');
+Route::get('charts', 'TestController@charts')->name('charts');
 Route::get('charts/{codigo_carrera}', 'TestController@getCatedraticosCarrera');
 Route::get('charts/{codigo_carrera}/{codigo_curso}', 'TestController@getCatedraticosCharts');
 Route::post('chartPie', 'TestController@chartPie');

@@ -88,9 +88,19 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 margin-bottom">
             @yield('content')
         </main>
+
+        <footer class="footer mt-auto py-3">
+            <div class="container">
+                <span class="text-muted">Jesua S. <a href="https://github.com/bjesua">Github</a> </span>
+            </div>
+        </footer>
+
     </div>
+
+
 </body>
+
 </html>
